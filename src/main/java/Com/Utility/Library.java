@@ -13,7 +13,13 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 public class Library {
+	
+	public static ExtentTest test;
+	
    //generic method get data by using excel
 	public static String getTestData(String Sheetname,int Row,int Cell) throws Exception {
 		String Path="C:\\Users\\Hp\\eclipse-workspace\\Batch15_Framwork\\TestData\\test_data.xlsx";
@@ -34,18 +40,20 @@ public class Library {
 	public static void custem_sendKeys(WebElement element,String value) {
 		try{
 			element.sendKeys(value);
+			test.log(Status.PASS, "value successflly send=="+value);
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			test.log(Status.FAIL, e.getMessage());
 		}
 		}
 	     //custom click method
 		public static void custem_click(WebElement element) {
 		try {
 			element.click();
+			test.log(Status.PASS, "Click Successfully");
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			test.log(Status.FAIL,e.getMessage());
 		    }
 		}
 		  /// handdle drop Down by generic method
